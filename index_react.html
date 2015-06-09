@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  	<link rel="stylesheet" type="text/css" href="main.css">
+  	<script src="https://fb.me/react-0.13.3.js"></script>
+    <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  </head>
+  <body>
+	<div id="content"></div>
+    <script type="text/jsx">
+    var Input = React.createClass({ 
+    	handle_change: function(){
+    		var new_value = this.refs.input.getDOMNode().value;
+    		this.props.on_Input_Change(new_value);
+    	},
+    	render: function(){
+    		return (
+				<div className='adaptive_placeholder_input_container'>
+					<tr><td><label alt={this.props.initial}>{this.props.initial}</label></td>
+					<td><input className="Input" type="text" placeholder={this.props.placeholder} required="required" onChange={this.handle_change} ref="input"></input></td></tr>
+				</div>    			
+			);
+    	}
+    });
+    
+    var Form = React.createClass({
+    	handleSubmit : function(e){
+    		e.preventDefault();
+    		jQuery('#formDiv').hide();
+    		jQuery('#story').show();
+    	},
+    	render: function(){
+    		return (
+				<form onSubmit={this.handleSubmit}>
+					<table cellPadding="7">
+						<Input
+							initial={'A Name: '}
+							placeholder={'eg. Jimmy'}
+							on_Input_Change={this.props.handle_input}
+						/>
+						<Input
+							initial={'An Adjective: '}
+							placeholder={'eg. green'}
+							on_Input_Change={this.props.handle_input2}
+						/>
+						<Input
+							initial={'An Occupation: '}
+							placeholder={'eg. programmer'}
+							on_Input_Change={this.props.handle_input3}
+						/>
+						<Input
+							initial={'An Object: '}
+							placeholder={'eg. samurai sword'}
+							on_Input_Change={this.props.handle_input4}
+						/>
+						<Input
+							initial={'An Verb: '}
+							placeholder={'eg. catapult'}
+							on_Input_Change={this.props.handle_input5}
+						/>
+					</table>
+					<input type="submit" value="Do It!"/>
+				</form>
+			);
+    	}
+    });
+    
+    var Page = React.createClass({
+    	getInitialState: function(){
+    		return {
+    			name : "",
+    			adj  : "",
+    			occ  : "",
+    			obj  : "",
+    			verb : "",
+    		};
+    	},
+    	handle_input: function(val){
+    		this.setState({
+				name: val
+			});
+    	},
+    	handle_input2: function(val){
+    		this.setState({
+				adj: val
+			});
+    	},
+    	handle_input3: function(val){
+    		this.setState({
+				occ: val
+			});
+    	},
+    	handle_input4: function(val){
+    		this.setState({
+				obj: val
+			});
+    	},
+    	handle_input5: function(val){
+    		this.setState({
+				verb: val
+			});
+    	},
+    	render: function(){
+    		return(
+				<div id="wrapper">
+					<div id="formDiv">
+						<h2>Mad Libs!</h2>
+						<p><b>Choose words that match the description to make an awesome mad lib</b></p>	
+						<Form 
+							handle_input={this.handle_input} 
+							handle_input2={this.handle_input2}
+							handle_input3={this.handle_input3} 
+							handle_input4={this.handle_input4} 
+							handle_input5={this.handle_input5} 
+						/>
+					</div>
+					<div className="text" id="story" style={{display: 'none'}}>
+						<p>Here's your awesome story:</p>
+						Once upon a time, a popular <b>{this.state.adj} {this.state.occ}</b> by the name of <b>{this.state.name}</b> made the most wonderful item of his craft,
+						an object so revolutionary their colleages and world marveled at its brilliance: a small <b>{this.state.obj}</b> This item changed the world, 
+						everyone used the <b>{this.state.obj}</b> non-stop, they would use it to <b>{this.state.verb}</b> in every situation. Soon aliens 
+						discovered the world and found one of these <b>{this.state.obj}s</b> and cursed <b>{this.state.name}</b> for the ingenuity of the item saying "Why didn't we think of that?"
+						<br/>
+						<a href="">Do it again!</a>
+					</div>
+				</div>
+    		);
+    	}
+    });
+    
+    React.render(
+		React.createElement(Page, null),
+  		document.getElementById('content')
+	);
+
+    </script>
+  </body>
+</html>

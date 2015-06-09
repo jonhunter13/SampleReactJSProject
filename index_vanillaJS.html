@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  	<link rel="stylesheet" type="text/css" href="main.css">
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="madlib.js"></script>
+  </head>
+  <body>
+	<!--
+1. Create and submit a JavaScript application that allows the user to play Mad Libs. 
+(You can use any tools that you like; we use a lot of JQuery and React. Your code can be minimal and take any form you like - 
+no need to worry about having a lot of features or a slick UI.)
+	-->
+	<div id="content">
+		<h2>Mad Libs!</h2>
+		<hr>
+		<table cellpadding=7>
+			<thead>
+				<tr colspan=2>
+					<b>Choose words to match the description to make an awesome mad lib</b>
+				</tr>
+			</thead>
+			<tr><td>A Name: </td><td><input type="text" id="name" placeholder="e.g. Joe Bob" /></td></tr>
+			<tr><td>Adjective: </td><td><input type="text" id="adj" placeholder="e.g. green" /></td></tr>
+			<tr><td>An occupation: </td><td><input type="text" id="occ" placeholder="e.g. programmer" /></td></tr>
+			<tr><td>An object: </td><td><input type="text" id="obj" placeholder="e.g. samuari sword" /></td></tr>
+			<tr><td>A Verb: </td><td><input type="text" id="verb" placeholder="e.g. evisorate" /></td></tr>
+
+		</table>
+		<button id="submit">Do it!</button>
+	</div>
+  </body>
+</html>
